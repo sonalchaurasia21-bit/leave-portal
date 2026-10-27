@@ -1,5 +1,8 @@
 (function(){
 'use strict';
+if (window.location.search.includes('logout') || window.location.search.includes('clear')) {
+  localStorage.removeItem('user');
+}
 const getUser=()=>JSON.parse(localStorage.getItem('user'));
 const setUser=(u)=>localStorage.setItem('user',JSON.stringify(u));
 if(getUser()&&getUser().role==='hod'){location.href='/hod.html';return;}

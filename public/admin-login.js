@@ -1,5 +1,8 @@
 (function(){
 'use strict';
+if (window.location.search.includes('logout') || window.location.search.includes('clear')) {
+  localStorage.removeItem('adminUser');
+}
 const getAdmin=()=>JSON.parse(localStorage.getItem('adminUser'));
 const setAdmin=(u)=>localStorage.setItem('adminUser',JSON.stringify(u));
 if(getAdmin()){location.href='/admin.html';return;}

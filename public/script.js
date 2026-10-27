@@ -4,10 +4,16 @@
 (function () {
   'use strict';
 
+  // Clear session if requested via URL param (useful for tests or manual logout)
+  if (window.location.search.includes('logout') || window.location.search.includes('clear')) {
+    localStorage.removeItem('user');
+    localStorage.removeItem('adminUser');
+  }
+
   // ---- Helpers ----
   const getUser = () => JSON.parse(localStorage.getItem('user'));
   const setUser = (u) => localStorage.setItem('user', JSON.stringify(u));
-  const logout = () => { localStorage.removeItem('user'); location.href = '/'; };
+  const logout = () => { localStorage.removeItem('user'); location.href = '/?logout=1'; };
   const page = document.body.dataset.page;
 
   function requireAuth() {
