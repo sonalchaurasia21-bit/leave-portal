@@ -87,13 +87,13 @@ async function seedConfig() {
       await Config.create({
         singletonKey: "config",
         leaveTypes: [
-          { name: "Sick Leave", maxDays: 12, applicableTo: ["student", "faculty"] },
-          { name: "Casual Leave", maxDays: 8, applicableTo: ["student", "faculty"] },
+          { name: "Sick Leave", maxDays: 12, applicableTo: ["faculty"] },
+          { name: "Casual Leave", maxDays: 8, applicableTo: ["faculty"] },
           { name: "Medical", maxDays: 10, applicableTo: ["student", "faculty"] },
           { name: "Emergency", maxDays: 5, applicableTo: ["student", "faculty"] },
           { name: "Hackathon", maxDays: 5, applicableTo: ["student"] },
           { name: "College Event", maxDays: 5, applicableTo: ["student"] },
-          { name: "Personal", maxDays: 10, applicableTo: ["student", "faculty"] },
+          { name: "Personal", maxDays: 10, applicableTo: ["faculty"] },
           { name: "Earned Leave", maxDays: 30, applicableTo: ["faculty"] },
           { name: "Vacation Leave", maxDays: 42, applicableTo: ["faculty"] },
           { name: "Bank Work", maxDays: 12, applicableTo: ["faculty"] },
