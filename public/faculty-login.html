@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <meta name="description" content="CRCE Leave Portal — Faculty Login">
+  <title>Faculty Login — CRCE Leave Portal</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+</head>
+<body data-page="faculty-login">
+  <div class="login-page faculty-login-page">
+    <div class="login-card faculty-login-card">
+      <div class="login-card__brand">
+        <img src="crce-logo.png" alt="CRCE Logo" class="login-logo-img">
+        <h1>Faculty Portal</h1>
+        <p>CRCE Leave Management System</p>
+      </div>
+
+      <div class="login-tabs">
+        <button class="login-tab active" data-tab="login">Login</button>
+        <button class="login-tab" data-tab="register">Register</button>
+      </div>
+
+      <!-- Login Form -->
+      <div class="login-form-section active" id="section-login">
+        <form id="faculty-login-form" novalidate>
+          <div class="form-group">
+            <label for="faculty-login-email">Email</label>
+            <input type="email" id="faculty-login-email" placeholder="faculty@frcrce.ac.in" required>
+            <div class="form-group__error">Please enter your email</div>
+          </div>
+          <div class="form-group">
+            <label for="faculty-login-password">Password</label>
+            <input type="password" id="faculty-login-password" placeholder="Enter password" required>
+            <div class="form-group__error">Please enter your password</div>
+          </div>
+          <button type="submit" class="btn btn-faculty btn-full" id="faculty-login-btn">
+            <i class="fa-solid fa-right-to-bracket"></i> Login
+          </button>
+        </form>
+      </div>
+
+      <!-- Register Form -->
+      <div class="login-form-section" id="section-register">
+        <form id="faculty-register-form" novalidate>
+          <div class="form-group">
+            <label for="faculty-reg-name">Full Name</label>
+            <input type="text" id="faculty-reg-name" placeholder="Prof. John Doe" required>
+            <div class="form-group__error">Please enter your name</div>
+          </div>
+          <div class="form-group">
+            <label for="faculty-reg-email">Email</label>
+            <input type="email" id="faculty-reg-email" placeholder="faculty@frcrce.ac.in" required>
+            <div class="form-group__error">Please enter a valid email</div>
+          </div>
+          <div class="form-group">
+            <label for="faculty-reg-department">Department</label>
+            <select id="faculty-reg-department" required>
+              <option value="">Select department</option>
+              <option>Computer Science</option>
+              <option>Information Technology</option>
+              <option>Electronics</option>
+              <option>Mechanical</option>
+              <option>Production</option>
+              <option>Humanities</option>
+            </select>
+            <div class="form-group__error">Required</div>
+          </div>
+          <div class="form-group">
+            <label for="faculty-reg-password">Password</label>
+            <input type="password" id="faculty-reg-password" placeholder="Create a password" required>
+            <div class="form-group__error">Please create a password</div>
+          </div>
+          <div class="form-group">
+            <label for="faculty-reg-secret">Faculty Secret Key</label>
+            <input type="password" id="faculty-reg-secret" placeholder="Enter secret key" required>
+            <div class="form-group__error">Secret key is required for registration</div>
+          </div>
+          <button type="submit" class="btn btn-faculty btn-full" id="faculty-register-btn">
+            <i class="fa-solid fa-user-plus"></i> Register
+          </button>
+        </form>
+      </div>
+
+      <div class="faculty-login-footer">
+        <a href="/" class="faculty-switch-link"><i class="fa-solid fa-user-graduate"></i> Student Login</a>
+        <span style="color:var(--border);margin:0 .5rem">|</span>
+        <a href="/hod-login.html" class="faculty-switch-link"><i class="fa-solid fa-user-tie"></i> HOD Login</a>
+        <span style="color:var(--border);margin:0 .5rem">|</span>
+        <a href="/admin-login.html" class="faculty-switch-link"><i class="fa-solid fa-shield-halved"></i> Admin</a>
+      </div>
+    </div>
+  </div>
+  <div class="toast" id="toast"><i class="toast__icon"></i><span class="toast__msg"></span></div>
+  <script src="script.js"></script>
+  <script src="chatbot.js"></script>
+</body>
+</html>

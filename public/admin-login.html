@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <meta name="description" content="CRCE Leave Portal — Super Admin Login">
+  <title>Admin Login — CRCE Leave Portal</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+</head>
+<body data-page="admin-login">
+  <div class="login-page admin-login-page">
+    <div class="login-card admin-login-card">
+      <div class="login-card__brand">
+        <img src="crce-logo.png" alt="CRCE Logo" class="login-logo-img">
+        <h1>Super Admin</h1>
+        <p>CRCE Leave Management System</p>
+      </div>
+      <div class="login-tabs">
+        <button class="login-tab active" data-tab="login">Login</button>
+        <button class="login-tab" data-tab="register">Register</button>
+      </div>
+      <div class="login-form-section active" id="section-login">
+        <form id="admin-login-form" novalidate>
+          <div class="form-group">
+            <label for="admin-login-email">Email</label>
+            <input type="email" id="admin-login-email" placeholder="admin@frcrce.ac.in" required>
+          </div>
+          <div class="form-group">
+            <label for="admin-login-password">Password</label>
+            <input type="password" id="admin-login-password" placeholder="Enter password" required>
+          </div>
+          <button type="submit" class="btn btn-admin btn-full" id="admin-login-btn">
+            <i class="fa-solid fa-right-to-bracket"></i> Login
+          </button>
+        </form>
+      </div>
+      <div class="login-form-section" id="section-register">
+        <form id="admin-register-form" novalidate>
+          <div class="form-group">
+            <label for="admin-reg-name">Full Name</label>
+            <input type="text" id="admin-reg-name" placeholder="Admin Name" required>
+          </div>
+          <div class="form-group">
+            <label for="admin-reg-email">Email</label>
+            <input type="email" id="admin-reg-email" placeholder="admin@frcrce.ac.in" required>
+          </div>
+          <div class="form-group">
+            <label for="admin-reg-password">Password</label>
+            <input type="password" id="admin-reg-password" placeholder="Create a password" required>
+          </div>
+          <div class="form-group">
+            <label for="admin-reg-secret">Admin Secret Key</label>
+            <input type="password" id="admin-reg-secret" placeholder="Enter admin secret key" required>
+          </div>
+          <button type="submit" class="btn btn-admin btn-full" id="admin-register-btn">
+            <i class="fa-solid fa-user-plus"></i> Register
+          </button>
+        </form>
+      </div>
+      <div class="faculty-login-footer">
+        <a href="/" class="faculty-switch-link"><i class="fa-solid fa-user-graduate"></i> Student Login</a>
+        <span style="color:var(--border);margin:0 .5rem">|</span>
+        <a href="/faculty-login.html" class="faculty-switch-link"><i class="fa-solid fa-chalkboard-user"></i> Faculty Login</a>
+        <span style="color:var(--border);margin:0 .5rem">|</span>
+        <a href="/hod-login.html" class="faculty-switch-link"><i class="fa-solid fa-user-tie"></i> HOD Login</a>
+      </div>
+    </div>
+  </div>
+  <div class="toast" id="toast"><i class="toast__icon"></i><span class="toast__msg"></span></div>
+  <script src="admin-login.js"></script>
+  <script src="chatbot.js"></script>
+</body>
+</html>

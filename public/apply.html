@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Apply Leave — CRCE Leave Portal</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+</head>
+<body data-page="apply">
+  <div class="layout">
+    <nav id="sidebar"></nav>
+    <div class="main-area">
+      <header id="topbar"></header>
+      <div class="content">
+        <div class="form-card fade-in">
+          <h2 class="form-card__title"><i class="fa-solid fa-pen-to-square"></i> Apply for Leave</h2>
+          <form id="apply-form" novalidate>
+            <div class="form-group">
+              <label>Leave Type</label>
+              <div class="leave-type-grid" id="student-leave-type-grid">
+                <div class="leave-type-card" data-type="Medical">
+                  <span class="leave-type-card__icon">🏥</span>
+                  <span class="leave-type-card__label">Medical</span>
+                  <span class="leave-type-card__quota">No limit</span>
+                </div>
+                <div class="leave-type-card" data-type="Hackathon">
+                  <span class="leave-type-card__icon">💻</span>
+                  <span class="leave-type-card__label">Hackathon</span>
+                  <span class="leave-type-card__quota">5 days/sem</span>
+                </div>
+                <div class="leave-type-card" data-type="College Event">
+                  <span class="leave-type-card__icon">🎓</span>
+                  <span class="leave-type-card__label">College Event</span>
+                  <span class="leave-type-card__quota">As needed</span>
+                </div>
+                <div class="leave-type-card" data-type="Personal">
+                  <span class="leave-type-card__icon">🏠</span>
+                  <span class="leave-type-card__label">Personal</span>
+                  <span class="leave-type-card__quota">3 days/sem</span>
+                </div>
+              </div>
+              <input type="hidden" id="leave-type" required>
+              <div class="form-group__error">Please select a leave type</div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="start-date">Start Date</label>
+                <input type="date" id="start-date" required>
+                <div class="form-group__error">Select start date</div>
+              </div>
+              <div class="form-group">
+                <label for="end-date">End Date</label>
+                <input type="date" id="end-date" required>
+                <div class="form-group__error">Select end date</div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="num-days">Number of Days</label>
+              <input type="number" id="num-days" readonly placeholder="Auto-calculated">
+            </div>
+            <div class="form-group">
+              <label for="leave-reason">Reason</label>
+              <textarea id="leave-reason" placeholder="Describe your reason..." required></textarea>
+              <div class="form-group__error">Please provide a reason</div>
+            </div>
+            <div class="form-group">
+              <label for="attachment">Attachment (optional)</label>
+              <input type="file" id="attachment" accept=".pdf,.jpg,.jpeg,.png,.doc,.docx">
+            </div>
+            <button type="submit" class="btn btn-primary btn-full" id="apply-btn">
+              <i class="fa-solid fa-paper-plane"></i> Submit Request
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="toast" id="toast"><i class="toast__icon"></i><span class="toast__msg"></span></div>
+  <script src="script.js"></script>
+  <script src="chatbot.js"></script>
+</body>
+</html>

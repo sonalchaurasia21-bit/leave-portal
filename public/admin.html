@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <meta name="description" content="CRCE Leave Portal — Super Admin Dashboard">
+  <title>Super Admin — CRCE Leave Portal</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+</head>
+<body data-page="admin">
+  <div class="layout">
+    <nav id="sidebar"></nav>
+    <div class="main-area">
+      <header id="topbar"></header>
+
+      <!-- ===== Leave Types Tab ===== -->
+      <div class="content admin-section" id="section-leave-types">
+        <div class="section-header">
+          <h2 class="section-title"><i class="fa-solid fa-tags" style="color:#f97316"></i> Leave Types</h2>
+          <p class="section-subtitle">Manage leave categories across all portals</p>
+        </div>
+        <div class="table-wrapper fade-in">
+          <div class="table-scroll">
+            <table>
+              <thead>
+                <tr>
+                  <th>Name</th><th>Max Days</th><th>Applicable To</th><th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="leave-types-table"></tbody>
+            </table>
+          </div>
+        </div>
+        <div class="form-card admin-add-card fade-in" style="margin-top:1.5rem">
+          <h3 class="form-card__title"><i class="fa-solid fa-plus-circle" style="color:var(--accent)"></i> Add New Leave Type</h3>
+          <form id="add-leave-type-form" novalidate>
+            <div class="form-row-3">
+              <div class="form-group">
+                <label for="new-lt-name">Name</label>
+                <input type="text" id="new-lt-name" placeholder="e.g. Maternity Leave" required>
+              </div>
+              <div class="form-group">
+                <label for="new-lt-maxdays">Max Days</label>
+                <input type="number" id="new-lt-maxdays" placeholder="e.g. 15" min="1" required>
+              </div>
+              <div class="form-group">
+                <label>Applicable To</label>
+                <div class="admin-checkbox-group">
+                  <label class="admin-checkbox"><input type="checkbox" value="student" id="new-lt-student"> <span>Student</span></label>
+                  <label class="admin-checkbox"><input type="checkbox" value="faculty" id="new-lt-faculty"> <span>Faculty</span></label>
+                </div>
+              </div>
+            </div>
+            <button type="submit" class="btn btn-admin" id="add-lt-btn">
+              <i class="fa-solid fa-plus"></i> Add Leave Type
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <!-- ===== Leave Limits Tab ===== -->
+      <div class="content admin-section" id="section-leave-limits" style="display:none">
+        <div class="section-header">
+          <h2 class="section-title"><i class="fa-solid fa-gauge-high" style="color:#a855f7"></i> Annual Leave Limits</h2>
+          <p class="section-subtitle">Set maximum total leaves per year for each role</p>
+        </div>
+        <div class="form-card fade-in" style="max-width:600px">
+          <div class="admin-limits-grid">
+            <div class="admin-limit-card">
+              <div class="admin-limit-card__icon" style="background:rgba(90,111,240,.1);color:#5a6ff0"><i class="fa-solid fa-user-graduate"></i></div>
+              <div class="admin-limit-card__info">
+                <label for="limit-student">Student</label>
+                <p>Maximum annual leave days for students</p>
+              </div>
+              <input type="number" id="limit-student" class="admin-limit-input" min="1">
+            </div>
+            <div class="admin-limit-card">
+              <div class="admin-limit-card__icon" style="background:rgba(16,185,129,.1);color:#10b981"><i class="fa-solid fa-chalkboard-user"></i></div>
+              <div class="admin-limit-card__info">
+                <label for="limit-faculty">Faculty</label>
+                <p>Maximum annual leave days for faculty</p>
+              </div>
+              <input type="number" id="limit-faculty" class="admin-limit-input" min="1">
+            </div>
+
+          </div>
+          <button class="btn btn-admin btn-full" id="save-limits-btn" style="margin-top:1.5rem">
+            <i class="fa-solid fa-floppy-disk"></i> Save Limits
+          </button>
+        </div>
+      </div>
+
+      <!-- ===== Portal Settings Tab ===== -->
+      <div class="content admin-section" id="section-portal-settings" style="display:none">
+        <div class="section-header">
+          <h2 class="section-title"><i class="fa-solid fa-toggle-on" style="color:#22c55e"></i> Portal Settings</h2>
+          <p class="section-subtitle">Enable or disable portals for each role</p>
+        </div>
+        <div class="admin-warning-banner">
+          <i class="fa-solid fa-triangle-exclamation"></i>
+          <span>Disabling a portal will prevent users of that role from submitting new leave applications.</span>
+        </div>
+        <div class="admin-toggles-grid fade-in">
+          <div class="admin-toggle-card">
+            <div class="admin-toggle-card__info">
+              <div class="admin-toggle-card__icon" style="background:rgba(90,111,240,.1);color:#5a6ff0"><i class="fa-solid fa-user-graduate"></i></div>
+              <div>
+                <h3>Student Portal</h3>
+                <p>Allow students to submit leave applications</p>
+              </div>
+            </div>
+            <label class="admin-switch">
+              <input type="checkbox" id="toggle-student">
+              <span class="admin-switch__slider"></span>
+            </label>
+          </div>
+          <div class="admin-toggle-card">
+            <div class="admin-toggle-card__info">
+              <div class="admin-toggle-card__icon" style="background:rgba(16,185,129,.1);color:#10b981"><i class="fa-solid fa-chalkboard-user"></i></div>
+              <div>
+                <h3>Faculty Portal</h3>
+                <p>Allow faculty to submit leave applications</p>
+              </div>
+            </div>
+            <label class="admin-switch">
+              <input type="checkbox" id="toggle-faculty">
+              <span class="admin-switch__slider"></span>
+            </label>
+          </div>
+          <div class="admin-toggle-card">
+            <div class="admin-toggle-card__info">
+              <div class="admin-toggle-card__icon" style="background:rgba(99,102,241,.1);color:#6366f1"><i class="fa-solid fa-user-tie"></i></div>
+              <div>
+                <h3>HOD Portal</h3>
+                <p>Allow HODs to submit leave applications</p>
+              </div>
+            </div>
+            <label class="admin-switch">
+              <input type="checkbox" id="toggle-hod">
+              <span class="admin-switch__slider"></span>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== Academic Year Tab ===== -->
+      <div class="content admin-section" id="section-academic-year" style="display:none">
+        <div class="section-header">
+          <h2 class="section-title"><i class="fa-solid fa-calendar-days" style="color:#0284c7"></i> Academic Year</h2>
+          <p class="section-subtitle">Set the current academic year for all portals</p>
+        </div>
+        <div class="form-card fade-in" style="max-width:480px">
+          <div class="form-group">
+            <label for="academic-year-input">Current Academic Year</label>
+            <input type="text" id="academic-year-input" placeholder="e.g. 2025-26">
+          </div>
+          <button class="btn btn-admin btn-full" id="save-ay-btn">
+            <i class="fa-solid fa-floppy-disk"></i> Save Academic Year
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="toast" id="toast"><i class="toast__icon"></i><span class="toast__msg"></span></div>
+  <script src="admin-app.js"></script>
+  <script src="chatbot.js"></script>
+</body>
+</html>

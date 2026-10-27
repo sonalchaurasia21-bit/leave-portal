@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <meta name="description" content="CRCE Leave Portal — HOD Dashboard">
+  <title>HOD Dashboard — CRCE Leave Portal</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+</head>
+<body data-page="hod">
+  <div class="layout">
+    <nav id="sidebar"></nav>
+    <div class="main-area">
+      <header id="topbar"></header>
+
+      <!-- Dashboard -->
+      <div class="content hod-section" id="section-dashboard">
+        <div class="stats-grid" id="hod-stats-grid"></div>
+        <div class="charts-grid" style="grid-template-columns:1fr;">
+          <div class="chart-card"><div class="chart-card__title"><i class="fa-solid fa-chart-bar"></i> Monthly Leave Applications — Students vs Faculty</div><canvas id="monthly-chart"></canvas></div>
+        </div>
+        <div class="charts-grid">
+          <div class="chart-card"><div class="chart-card__title"><i class="fa-solid fa-user-graduate" style="color:#a855f7"></i> Student Leave Breakdown</div><canvas id="student-type-chart"></canvas></div>
+          <div class="chart-card"><div class="chart-card__title"><i class="fa-solid fa-chalkboard-user" style="color:#06b6d4"></i> Faculty Leave Breakdown</div><canvas id="faculty-type-chart"></canvas></div>
+        </div>
+      </div>
+
+      <!-- Approvals -->
+      <div class="content hod-section" id="section-approvals" style="display:none">
+        <div class="table-wrapper fade-in"><div class="table-scroll">
+          <table><thead><tr>
+            <th>Student/Faculty</th><th>Leave Type</th><th>Duration</th><th>Days</th><th>Applied</th><th>Certificate</th><th>Actions</th>
+          </tr></thead><tbody id="hod-approvals-table"></tbody></table>
+        </div></div>
+      </div>
+
+      <!-- All Leaves -->
+      <div class="content hod-section" id="section-allleaves" style="display:none">
+        <div class="table-wrapper fade-in">
+          <div class="table-wrapper__header">
+            <div class="filter-tabs" id="allleaves-filter-tabs">
+              <button class="filter-tab active" data-filter="All">All</button>
+              <button class="filter-tab" data-filter="Pending">Pending</button>
+              <button class="filter-tab" data-filter="Approved">Approved</button>
+              <button class="filter-tab" data-filter="Rejected">Rejected</button>
+            </div>
+          </div>
+          <div class="table-scroll">
+            <table><thead><tr>
+              <th>Applicant</th><th>Leave Type</th><th>From</th><th>To</th><th>Days</th><th>Reason</th><th>Status</th><th>Actions</th>
+            </tr></thead><tbody id="hod-allleaves-table"></tbody></table>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Detail Modal -->
+  <div class="modal-overlay" id="modal-overlay">
+    <div class="modal">
+      <div class="modal__header"><span class="modal__title">Leave Details</span><button class="modal__close" id="modal-close"><i class="fa-solid fa-xmark"></i></button></div>
+      <div id="modal-body"></div>
+    </div>
+  </div>
+
+  <!-- Remarks Modal -->
+  <div class="modal-overlay" id="remarks-overlay">
+    <div class="modal remarks-modal">
+      <div class="modal__header"><span class="modal__title" id="remarks-title">Approve Leave</span><button class="modal__close" id="remarks-close"><i class="fa-solid fa-xmark"></i></button></div>
+      <div class="remarks-modal__body">
+        <div class="remarks-student-info" id="remarks-student-info"></div>
+        <div class="form-group"><label for="remarks-text">Remarks (optional)</label><textarea id="remarks-text" placeholder="Add remarks..." rows="3"></textarea></div>
+        <div class="remarks-modal__actions"><button class="btn btn-ghost" id="remarks-cancel">Cancel</button><button class="btn" id="remarks-confirm">Confirm</button></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"><i class="toast__icon"></i><span class="toast__msg"></span></div>
+  <script src="hod-app.js"></script>
+  <script src="chatbot.js"></script>
+</body>
+</html>

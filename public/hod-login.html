@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <meta name="description" content="CRCE Leave Portal — HOD Login">
+  <title>HOD Login — CRCE Leave Portal</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+</head>
+<body data-page="hod-login">
+  <div class="login-page hod-login-page">
+    <div class="login-card hod-login-card">
+      <div class="login-card__brand">
+        <img src="crce-logo.png" alt="CRCE Logo" class="login-logo-img">
+        <h1>HOD Portal</h1>
+        <p>CRCE Leave Management System</p>
+      </div>
+      <div class="login-tabs">
+        <button class="login-tab active" data-tab="login">Login</button>
+        <button class="login-tab" data-tab="register">Register</button>
+      </div>
+      <div class="login-form-section active" id="section-login">
+        <form id="hod-login-form" novalidate>
+          <div class="form-group">
+            <label for="hod-login-email">Email</label>
+            <input type="email" id="hod-login-email" placeholder="hod@frcrce.ac.in" required>
+          </div>
+          <div class="form-group">
+            <label for="hod-login-password">Password</label>
+            <input type="password" id="hod-login-password" placeholder="Enter password" required>
+          </div>
+          <button type="submit" class="btn btn-hod btn-full" id="hod-login-btn">
+            <i class="fa-solid fa-right-to-bracket"></i> Login
+          </button>
+        </form>
+      </div>
+      <div class="login-form-section" id="section-register">
+        <form id="hod-register-form" novalidate>
+          <div class="form-group">
+            <label for="hod-reg-name">Full Name</label>
+            <input type="text" id="hod-reg-name" placeholder="Dr. V. Subramaniam" required>
+          </div>
+          <div class="form-group">
+            <label for="hod-reg-email">Email</label>
+            <input type="email" id="hod-reg-email" placeholder="hod@frcrce.ac.in" required>
+          </div>
+          <div class="form-group">
+            <label for="hod-reg-department">Department</label>
+            <select id="hod-reg-department" required>
+              <option value="">Select Department</option>
+              <option>Computer Science</option>
+              <option>Electronics</option>
+              <option>Mechanical</option>
+              <option>IT</option>
+              <option>Civil</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="hod-reg-password">Password</label>
+            <input type="password" id="hod-reg-password" placeholder="Create a password" required>
+          </div>
+          <div class="form-group">
+            <label for="hod-reg-secret">HOD Secret Key</label>
+            <input type="password" id="hod-reg-secret" placeholder="Enter HOD secret key" required>
+          </div>
+          <button type="submit" class="btn btn-hod btn-full" id="hod-register-btn">
+            <i class="fa-solid fa-user-plus"></i> Register
+          </button>
+        </form>
+      </div>
+      <div class="faculty-login-footer">
+        <a href="/" class="faculty-switch-link"><i class="fa-solid fa-user-graduate"></i> Student Login</a>
+        <span style="color:var(--border);margin:0 .5rem">|</span>
+        <a href="/faculty-login.html" class="faculty-switch-link"><i class="fa-solid fa-chalkboard-user"></i> Faculty Login</a>
+        <span style="color:var(--border);margin:0 .5rem">|</span>
+        <a href="/admin-login.html" class="faculty-switch-link"><i class="fa-solid fa-shield-halved"></i> Admin</a>
+      </div>
+    </div>
+  </div>
+  <div class="toast" id="toast"><i class="toast__icon"></i><span class="toast__msg"></span></div>
+  <script src="hod-login.js"></script>
+  <script src="chatbot.js"></script>
+</body>
+</html>

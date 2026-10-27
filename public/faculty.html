@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <meta name="description" content="CRCE Leave Portal — Faculty Dashboard">
+  <title>Faculty Dashboard — CRCE Leave Portal</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+</head>
+<body data-page="faculty">
+  <div class="layout">
+    <nav id="sidebar"></nav>
+    <div class="main-area">
+      <header id="topbar"></header>
+
+      <!-- ===== SECTION: Dashboard ===== -->
+      <div class="content faculty-section" id="section-dashboard">
+        <div class="stats-grid" id="faculty-stats-grid"></div>
+        <div class="table-wrapper fade-in">
+          <div class="table-wrapper__header">
+            <span class="table-wrapper__title"><i class="fa-solid fa-clock-rotate-left"></i> Recent Activity</span>
+            <a href="#" class="btn btn-primary btn-sm" id="goto-apply-btn"><i class="fa-solid fa-plus"></i> Apply Leave</a>
+          </div>
+          <div class="table-scroll">
+            <table>
+              <thead>
+                <tr>
+                  <th>Leave Type</th><th>From</th><th>To</th><th>Days</th><th>Reason</th><th>Status</th><th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="faculty-recent-table"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== SECTION: Apply Leave ===== -->
+      <div class="content faculty-section" id="section-apply" style="display:none">
+        <div class="form-card faculty-form-card fade-in">
+          <form id="faculty-apply-form" novalidate>
+            <div class="form-group">
+              <label>Leave Type</label>
+              <div class="leave-type-grid" id="leave-type-grid">
+                <div class="leave-type-card" data-type="Bank Work">
+                  <span class="leave-type-card__icon">🏛️</span>
+                  <span class="leave-type-card__label">Bank Work</span>
+                  <span class="leave-type-card__quota">1/month days</span>
+                </div>
+                <div class="leave-type-card" data-type="Compensatory Off">
+                  <span class="leave-type-card__icon">📋</span>
+                  <span class="leave-type-card__label">Compensatory Off</span>
+                  <span class="leave-type-card__quota">1/6mo days</span>
+                </div>
+                <div class="leave-type-card" data-type="Casual Leave">
+                  <span class="leave-type-card__icon">☀️</span>
+                  <span class="leave-type-card__label">Casual Leave</span>
+                  <span class="leave-type-card__quota">8 days</span>
+                </div>
+                <div class="leave-type-card" data-type="Earned Leave">
+                  <span class="leave-type-card__icon">⭐</span>
+                  <span class="leave-type-card__label">Earned Leave</span>
+                  <span class="leave-type-card__quota">30 days</span>
+                </div>
+                <div class="leave-type-card" data-type="Sick Leave">
+                  <span class="leave-type-card__icon">🤒</span>
+                  <span class="leave-type-card__label">Sick Leave</span>
+                  <span class="leave-type-card__quota">12 days</span>
+                </div>
+                <div class="leave-type-card" data-type="Vacation Leave">
+                  <span class="leave-type-card__icon">🌴</span>
+                  <span class="leave-type-card__label">Vacation Leave</span>
+                  <span class="leave-type-card__quota">42 days</span>
+                </div>
+              </div>
+              <input type="hidden" id="faculty-leave-type" required>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="faculty-start-date">Start Date</label>
+                <input type="date" id="faculty-start-date" required>
+                <div class="form-group__error">Select start date</div>
+              </div>
+              <div class="form-group">
+                <label for="faculty-end-date">End Date</label>
+                <input type="date" id="faculty-end-date" required>
+                <div class="form-group__error">Select end date</div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="faculty-num-days">Number of Days</label>
+              <div class="calculated-days-display">
+                <span class="calculated-days-label">Calculated Duration</span>
+                <span class="calculated-days-note">Weekends & holidays not excluded</span>
+                <span class="calculated-days-value" id="faculty-num-days-display">—</span>
+              </div>
+              <input type="hidden" id="faculty-num-days">
+            </div>
+            <div class="form-group">
+              <label for="faculty-leave-reason">Reason</label>
+              <textarea id="faculty-leave-reason" placeholder="Describe your reason for leave..." required></textarea>
+              <div class="form-group__error">Please provide a reason</div>
+            </div>
+            <div class="form-group">
+              <label for="faculty-attachment">Attachment (optional)</label>
+              <input type="file" id="faculty-attachment" accept=".pdf,.jpg,.jpeg,.png,.doc,.docx">
+            </div>
+            <button type="submit" class="btn btn-faculty btn-full" id="faculty-apply-btn">
+              <i class="fa-solid fa-paper-plane"></i> Submit Application
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <!-- ===== SECTION: My Leaves ===== -->
+      <div class="content faculty-section" id="section-myleaves" style="display:none">
+        <div class="table-wrapper fade-in">
+          <div class="table-wrapper__header">
+            <div class="filter-tabs" id="myleaves-filter-tabs">
+              <button class="filter-tab active" data-filter="All">All</button>
+              <button class="filter-tab" data-filter="Pending">Pending</button>
+              <button class="filter-tab" data-filter="Approved">Approved</button>
+              <button class="filter-tab" data-filter="Rejected">Rejected</button>
+            </div>
+          </div>
+          <div class="table-scroll">
+            <table>
+              <thead>
+                <tr>
+                  <th>Leave Type</th><th>From</th><th>To</th><th>Days</th><th>Reason</th><th>Status</th><th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="faculty-myleaves-table"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== SECTION: Leave Balance ===== -->
+      <div class="content faculty-section" id="section-balance" style="display:none">
+        <div class="balance-grid" id="faculty-balance-grid"></div>
+        <div class="section-header fade-in" style="margin-top:.5rem">
+          <h2 class="section-title" style="font-size:1.15rem">Usage Timeline</h2>
+          <p class="section-subtitle">Month-wise leave consumption this year</p>
+        </div>
+        <div class="table-wrapper fade-in">
+          <div class="table-scroll">
+            <table>
+              <thead>
+                <tr>
+                  <th>Month</th><th>Leave Type</th><th>Days Taken</th><th>Status</th>
+                </tr>
+              </thead>
+              <tbody id="faculty-timeline-table"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== SECTION: Approvals ===== -->
+      <div class="content faculty-section" id="section-approvals" style="display:none">
+        <div class="table-wrapper fade-in">
+          <div class="table-scroll">
+            <table>
+              <thead>
+                <tr>
+                  <th>Student</th><th>Leave Type</th><th>Duration</th><th>Days</th><th>Applied</th><th>Certificate</th><th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="faculty-approvals-table"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Detail Modal -->
+  <div class="modal-overlay" id="modal-overlay">
+    <div class="modal">
+      <div class="modal__header">
+        <span class="modal__title">Leave Details</span>
+        <button class="modal__close" id="modal-close"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div id="modal-body"></div>
+    </div>
+  </div>
+
+  <!-- Remarks Modal -->
+  <div class="modal-overlay" id="remarks-overlay">
+    <div class="modal remarks-modal">
+      <div class="modal__header">
+        <span class="modal__title" id="remarks-title">Approve Leave</span>
+        <button class="modal__close" id="remarks-close"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="remarks-modal__body">
+        <div class="remarks-student-info" id="remarks-student-info"></div>
+        <div class="form-group">
+          <label for="remarks-text">Remarks (optional)</label>
+          <textarea id="remarks-text" placeholder="Add remarks for the student..." rows="3"></textarea>
+        </div>
+        <div class="remarks-modal__actions">
+          <button class="btn btn-ghost" id="remarks-cancel">Cancel</button>
+          <button class="btn" id="remarks-confirm">Confirm</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"><i class="toast__icon"></i><span class="toast__msg"></span></div>
+  <script src="faculty-app.js"></script>
+  <script src="chatbot.js"></script>
+</body>
+</html>
