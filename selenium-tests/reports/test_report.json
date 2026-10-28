@@ -1,0 +1,20 @@
+[
+  {
+    "test_case_id": "TC-001",
+    "description": "Website Availability and Login Page Validation",
+    "expected_result": "Page loads successfully; title contains 'CRCE Leave Portal'; heading 'Student Portal' is visible; login form with email field, password field, and enabled Login button is present and usable.",
+    "actual_result": "Page loaded successfully. Title: 'CRCE Leave Portal \u2014 Login'. Heading: 'Student Portal'. Email input, password input, and enabled Login button confirmed present.",
+    "status": "PASS",
+    "failure_reason": "",
+    "timestamp": "2026-10-28 12:57:36"
+  },
+  {
+    "test_case_id": "TC-002",
+    "description": "Login Validation with Invalid Credentials",
+    "expected_result": "Invalid credentials are submitted; the application rejects them; an error toast message is displayed; user is NOT granted access and remains on the login page.",
+    "actual_result": "Invalid credentials rejected. Error toast displayed: 'Invalid email or password'. Access denied, user remains on login page (URL: 'https://leave-portal-zeta.vercel.app/?logout=1').",
+    "status": "PASS",
+    "failure_reason": "",
+    "timestamp": "2026-10-28 12:57:42"
+  }
+]
